@@ -16,6 +16,7 @@ setup(
         'torchaudio',
         'torch',
         'torchcodec',
+        'einops',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
