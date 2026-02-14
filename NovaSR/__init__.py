@@ -1,13 +1,47 @@
 import torch
 import os
 import torchaudio
+import soundfile as sf
 from .speechsr import SynthesizerTrn
 from torch.nn.utils import weight_norm
 
+
+def _safe_load_audio(audio_file):
+    load_errors = []
+    try:
+        audio_np, sample_rate = sf.read(audio_file, always_2d=True, dtype="float32")
+        audio = torch.from_numpy(audio_np).transpose(0, 1)
+        return audio, sample_rate
+    except Exception as exc:
+        load_errors.append(f"soundfile: {exc}")
+
+    for backend in ("soundfile", "sox", "ffmpeg", None):
+        try:
+            if backend is None:
+                return torchaudio.load(audio_file)
+            return torchaudio.load(audio_file, backend=backend)
+        except Exception as exc:
+            load_errors.append(f"backend={backend}: {exc}")
+    raise RuntimeError(
+        "Failed to load audio with all torchaudio backends. "
+        + " | ".join(load_errors)
+    )
+
 class FastSR:
-    def __init__(self, ckpt_path=None, half=True):
+    def __init__(self, ckpt_path=None, half=True, require_gpu=False):
         
-        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        cuda_available = torch.cuda.is_available()
+        torch_cuda = torch.version.cuda
+
+        if require_gpu and not cuda_available:
+            raise RuntimeError(
+                "GPU is required but unavailable. "
+                f"torch={torch.__version__}, torch_cuda={torch_cuda}, "
+                "cuda_available=False. "
+                "This usually means a CPU-only PyTorch build is installed."
+            )
+
+        self.device = torch.device('cuda' if cuda_available else 'cpu')
         self.hps = {
             "train": {
                 "segment_size": 9600
@@ -30,7 +64,7 @@ class FastSR:
 
         self.half = False
         self.model = self._load_model(ckpt_path).eval().float()
-        if half == True:
+        if half == True and self.device.type == 'cuda':
             self.half = True
             self.model.half()
 
@@ -49,7 +83,7 @@ class FastSR:
         return model
 
     def load_audio(self, audio_file):
-        audio, sample_rate = torchaudio.load(audio_file)
+        audio, sample_rate = _safe_load_audio(audio_file)
         audio = audio[:1, :]
         lowres_wav = torchaudio.functional.resample(audio, sample_rate, 16000, resampling_method="kaiser_window").unsqueeze(1).to(self.device)
         if self.half == True:

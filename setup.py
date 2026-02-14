@@ -12,10 +12,10 @@ setup(
     license='MIT',
     install_requires=[
         'soxr',
+        'soundfile',
         'timm',
         'torchaudio',
         'torch',
-        'torchcodec',
         'einops',
     ],
     classifiers=[

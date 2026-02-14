@@ -1,0 +1,6 @@
+soxr
+timm
+torchaudio
+torch
+torchcodec
+einops

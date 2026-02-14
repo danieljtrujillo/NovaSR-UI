@@ -1,3 +1,22 @@
+Metadata-Version: 2.1
+Name: NovaSR
+Version: 0.0.2
+Summary: A fast, small, and high-quality neural audio upsampling model.
+Home-page: https://github.com/ysharma3501/NovaSR
+Author: ysharma3501
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+License-File: NOTICE.md
+
 ## NovaSR: Pushing the Limits of Extreme Efficiency in Audio Super-Resolution
 
 <p align="center">
@@ -22,15 +41,15 @@ https://github.com/user-attachments/assets/c81f87eb-f6de-4bf9-85bd-dfc9a223a865
 
 ### Key Benefits
 
-- **Speed** — Up to 3,600x real-time on a single A100 GPU.
-- **Quality** — On par with models 5,000x larger.
-- **Size** — Just ~52 KB, several thousand times smaller than most.
+- **Speed** â€” Up to 3,600x real-time on a single A100 GPU.
+- **Quality** â€” On par with models 5,000x larger.
+- **Size** â€” Just ~52 KB, several thousand times smaller than most.
 
 ### Why Is This Useful?
 
-- **Enhancing TTS models** — Boost output quality with nearly zero computational cost.
-- **Real-time enhancement** — On-device upscaling of calls, streams, and low-quality audio with minimal memory.
-- **Restoring datasets** — Bulk-improve audio quality across entire datasets.
+- **Enhancing TTS models** â€” Boost output quality with nearly zero computational cost.
+- **Real-time enhancement** â€” On-device upscaling of calls, streams, and low-quality audio with minimal memory.
+- **Restoring datasets** â€” Bulk-improve audio quality across entire datasets.
 
 ### Comparisons
 
@@ -54,16 +73,16 @@ Check the [Hugging Face model page](https://huggingface.co/YatharthS/NovaSR) for
 | Requirement | Details |
 | :---------- | :------ |
 | **OS** | Windows 10/11 (context-menu feature is Windows-only; GUI and Python API work cross-platform) |
-| **Python** | 3.9 or newer — [download here](https://www.python.org/downloads/). Make sure "Add Python to PATH" is checked during install. |
+| **Python** | 3.9 or newer â€” [download here](https://www.python.org/downloads/). Make sure "Add Python to PATH" is checked during install. |
 | **pip** | Comes with Python. Verify with `pip --version`. |
 | **Git** | Needed only if installing from GitHub. [Download here](https://git-scm.com/downloads). |
-| **GPU (optional)** | NVIDIA GPU with CUDA for maximum speed. CPU works fine — just pass `half=False`. |
+| **GPU (optional)** | NVIDIA GPU with CUDA for maximum speed. CPU works fine â€” just pass `half=False`. |
 
 ---
 
 ## Installation
 
-### Option A — One-Click Setup (Windows)
+### Option A â€” One-Click Setup (Windows)
 
 1. Clone or download this repository.
 2. Double-click **`install.bat`** inside the repo folder.
@@ -73,13 +92,13 @@ This will:
 - Register **"Upscale with NovaSR"** in the Windows right-click context menu for audio files.
 - Launch the GUI.
 
-### Option B — pip Install (All Platforms)
+### Option B â€” pip Install (All Platforms)
 
 ```bash
 pip install git+https://github.com/ysharma3501/NovaSR.git
 ```
 
-### Option C — Editable / Developer Install
+### Option C â€” Editable / Developer Install
 
 ```bash
 git clone https://github.com/ysharma3501/NovaSR.git
@@ -106,7 +125,7 @@ python novasr_gui.py
 - Browse or type paths to one or more audio files (`.wav`, `.mp3`, `.flac`, `.ogg`, `.opus`, `.m4a`, `.aac`, `.wma`).
 - Optionally choose an output folder (defaults to same directory as input).
 - Toggle half-precision on/off (GPU = on, CPU = off for best speed).
-- Set **Compounding cycles** (1–10) to run the upscaled output back into the pipeline repeatedly.
+- Set **Compounding cycles** (1â€“10) to run the upscaled output back into the pipeline repeatedly.
 - Optionally enable **Denoise profile** and/or **Post-EQ profile**.
 - Optionally enable **Apply profile between cycles** to process audio between each SR pass.
 - Enable **Dual output mode** to save both:
@@ -175,7 +194,7 @@ highres_audio = upsampler.infer(lowres_audio).cpu()
 display(Audio(highres_audio, rate=48000))
 ```
 
-> **Note:** `FastSR()` is a Python class. Run it inside Python (`python`, a `.py` script, or a notebook) — not directly in bash/PowerShell.
+> **Note:** `FastSR()` is a Python class. Run it inside Python (`python`, a `.py` script, or a notebook) â€” not directly in bash/PowerShell.
 
 ---
 
@@ -183,19 +202,19 @@ display(Audio(highres_audio, rate=48000))
 
 ```
 NovaSR/
-├── NovaSR/                      # Python package
-│   ├── __init__.py              # FastSR class
-│   ├── speechsr.py              # SynthesizerTrn / Generator model
-│   ├── activations.py           # Snake / SnakeBeta activations
-│   ├── commons.py               # Utility functions
-│   └── resample.py              # Polyphase up/down sampling
-├── novasr_gui.py                # Tkinter desktop GUI
-├── install_context_menu.py      # Windows registry context-menu installer
-├── install.bat                  # One-click Windows setup script
-├── setup.py                     # pip package definition
-├── LICENSE
-├── NOTICE.md
-└── README.md
+â”œâ”€â”€ NovaSR/                      # Python package
+â”‚   â”œâ”€â”€ __init__.py              # FastSR class
+â”‚   â”œâ”€â”€ speechsr.py              # SynthesizerTrn / Generator model
+â”‚   â”œâ”€â”€ activations.py           # Snake / SnakeBeta activations
+â”‚   â”œâ”€â”€ commons.py               # Utility functions
+â”‚   â””â”€â”€ resample.py              # Polyphase up/down sampling
+â”œâ”€â”€ novasr_gui.py                # Tkinter desktop GUI
+â”œâ”€â”€ install_context_menu.py      # Windows registry context-menu installer
+â”œâ”€â”€ install.bat                  # One-click Windows setup script
+â”œâ”€â”€ setup.py                     # pip package definition
+â”œâ”€â”€ LICENSE
+â”œâ”€â”€ NOTICE.md
+â””â”€â”€ README.md
 ```
 
 ---
@@ -213,10 +232,10 @@ https://www.kaggle.com/code/yatharthsharma888/novasr-training
 A: Just 100 hours (MLS-Sidon + VCTK).
 
 **Q: How is it so small?**
-A: Fewer than 10 tiny Conv1d layers with Snake activations (based on BigVGAN) — optimized for maximum quality at minimal size.
+A: Fewer than 10 tiny Conv1d layers with Snake activations (based on BigVGAN) â€” optimized for maximum quality at minimal size.
 
 **Q: Will benchmarks come?**
-A: Yes — the model is still being trained further and will be benchmarked later.
+A: Yes â€” the model is still being trained further and will be benchmarked later.
 
 **Q: I get `bash: from: command not found` when I type `from NovaSR import FastSR`.**
 A: You're typing Python code into a shell. Run `python` first to enter the Python interpreter, or put the code in a `.py` file and run `python your_script.py`.

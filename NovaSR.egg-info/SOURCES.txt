@@ -1,0 +1,14 @@
+LICENSE
+NOTICE.md
+README.md
+setup.py
+NovaSR/__init__.py
+NovaSR/activations.py
+NovaSR/commons.py
+NovaSR/resample.py
+NovaSR/speechsr.py
+NovaSR.egg-info/PKG-INFO
+NovaSR.egg-info/SOURCES.txt
+NovaSR.egg-info/dependency_links.txt
+NovaSR.egg-info/requires.txt
+NovaSR.egg-info/top_level.txt

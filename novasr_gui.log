@@ -1,0 +1,1818 @@
+2026-02-13 16:13:10,769 | INFO | novasr_gui | Launching NovaSR GUI app. Log path: C:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.log
+2026-02-13 16:13:10,803 | INFO | novasr_gui | GUI startup
+2026-02-13 16:13:48,969 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:13:48,969 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/T7_RS22050_VAE010.wav']
+2026-02-13 16:13:48,971 | INFO | novasr_gui | Process settings: use_half=True, cycles=1, denoise=False, eq=False, between_cycles=False, dual_output=False
+2026-02-13 16:13:48,972 | INFO | novasr_gui | Initializing FastSR (half=True)
+2026-02-13 16:13:49,534 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/YatharthS/NovaSR/revision/main "HTTP/1.1 200 OK"
+2026-02-13 16:13:49,550 | INFO | novasr_gui | FastSR initialized successfully on device: cpu
+2026-02-13 16:13:49,551 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:13:49,564 | ERROR | novasr_gui | Processing failed for file: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.py", line 412, in _process
+    raw_audio, raw_sr = run_compounded_sr(
+                        ~~~~~~~~~~~~~~~~~^
+        fpath,
+        ^^^^^^
+    ...<4 lines>...
+        do_eq=do_eq,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.py", line 126, in run_compounded_sr
+    waveform, sample_rate = torchaudio.load(input_path)
+                            ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchaudio\__init__.py", line 86, in load
+    return load_with_torchcodec(
+        uri,
+    ...<6 lines>...
+        backend=backend,
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchaudio\_torchcodec.py", line 82, in load_with_torchcodec
+    from torchcodec.decoders import AudioDecoder
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\__init__.py", line 12, in <module>
+    from . import decoders, encoders, samplers, transforms  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\decoders\__init__.py", line 7, in <module>
+    from .._core import AudioStreamMetadata, VideoStreamMetadata
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\__init__.py", line 8, in <module>
+    from ._metadata import (
+    ...<5 lines>...
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\_metadata.py", line 16, in <module>
+    from torchcodec._core.ops import (
+    ...<3 lines>...
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 109, in <module>
+    ffmpeg_major_version, core_library_path = load_torchcodec_shared_libraries()
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 76, in load_torchcodec_shared_libraries
+    raise RuntimeError(
+    ...<16 lines>...
+    )
+RuntimeError: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback].
+2026-02-13 16:13:49,571 | INFO | novasr_gui | Batch complete: total=1
+2026-02-13 16:17:59,525 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:17:59,526 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/T7_RS22050_VAE010.wav, cycles=1, between_cycles=False, denoise=False, eq=False
+2026-02-13 16:17:59,526 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 16:17:59,526 | INFO | novasr_gui | Initializing FastSR (half=False)
+2026-02-13 16:17:59,996 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/YatharthS/NovaSR/revision/main "HTTP/1.1 200 OK"
+2026-02-13 16:18:00,010 | INFO | novasr_gui | FastSR initialized successfully on device: cpu
+2026-02-13 16:18:00,010 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10352964)
+2026-02-13 16:18:48,509 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268530)
+2026-02-13 16:20:17,790 | INFO | novasr_gui | Launching NovaSR GUI app. Log path: c:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.log
+2026-02-13 16:20:17,832 | INFO | novasr_gui | GUI startup
+2026-02-13 16:20:37,729 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:20:37,729 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/T7_RS22050_VAE010.wav']
+2026-02-13 16:20:37,732 | INFO | novasr_gui | Process settings: use_half=True, cycles=1, denoise=False, eq=False, between_cycles=False, dual_output=True
+2026-02-13 16:20:37,732 | INFO | novasr_gui | Initializing FastSR (half=True)
+2026-02-13 16:20:38,291 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/YatharthS/NovaSR/revision/main "HTTP/1.1 200 OK"
+2026-02-13 16:20:38,304 | INFO | novasr_gui | FastSR initialized successfully on device: cpu
+2026-02-13 16:20:38,305 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:20:38,341 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:20:38,341 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/T7_RS22050_VAE010.wav, cycles=1, between_cycles=False, denoise=False, eq=False
+2026-02-13 16:20:38,341 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 16:20:38,341 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10352964)
+2026-02-13 16:20:51,181 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268530)
+2026-02-13 16:20:51,198 | ERROR | novasr_gui | Processing failed for file: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+Traceback (most recent call last):
+  File "c:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.py", line 462, in _process
+    torchaudio.save(out_path, raw_audio, raw_sr)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchaudio\__init__.py", line 178, in save
+    return save_with_torchcodec(
+        uri,
+    ...<8 lines>...
+        compression=compression,
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchaudio\_torchcodec.py", line 246, in save_with_torchcodec
+    from torchcodec.encoders import AudioEncoder
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\__init__.py", line 12, in <module>
+    from . import decoders, encoders, samplers, transforms  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\decoders\__init__.py", line 7, in <module>
+    from .._core import AudioStreamMetadata, VideoStreamMetadata
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\__init__.py", line 8, in <module>
+    from ._metadata import (
+    ...<5 lines>...
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\_metadata.py", line 16, in <module>
+    from torchcodec._core.ops import (
+    ...<3 lines>...
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 109, in <module>
+    ffmpeg_major_version, core_library_path = load_torchcodec_shared_libraries()
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 76, in load_torchcodec_shared_libraries
+    raise RuntimeError(
+    ...<16 lines>...
+    )
+RuntimeError: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback].
+2026-02-13 16:20:51,207 | INFO | novasr_gui | Batch complete: total=1
+2026-02-13 16:38:19,354 | INFO | novasr_gui | Launching NovaSR GUI app. Log path: c:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.log
+2026-02-13 16:38:19,427 | INFO | novasr_gui | GUI startup
+2026-02-13 16:38:49,475 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:38:49,476 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/T7_RS22050_VAE010.wav']
+2026-02-13 16:38:49,478 | INFO | novasr_gui | Process settings: use_half=True, cycles=1, denoise=False, eq=False, between_cycles=False, dual_output=True
+2026-02-13 16:38:49,479 | INFO | novasr_gui | Initializing FastSR (half=True)
+2026-02-13 16:38:50,464 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/YatharthS/NovaSR/revision/main "HTTP/1.1 200 OK"
+2026-02-13 16:38:50,509 | INFO | novasr_gui | FastSR initialized successfully on device: cpu
+2026-02-13 16:38:50,509 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:38:50,569 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:38:50,570 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/T7_RS22050_VAE010.wav, cycles=1, between_cycles=False, denoise=False, eq=False
+2026-02-13 16:38:50,572 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 16:38:50,572 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10352964)
+2026-02-13 16:39:04,000 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268530)
+2026-02-13 16:39:04,028 | ERROR | novasr_gui | Processing failed for file: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+Traceback (most recent call last):
+  File "c:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.py", line 462, in _process
+    torchaudio.save(out_path, raw_audio, raw_sr)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchaudio\__init__.py", line 178, in save
+    return save_with_torchcodec(
+        uri,
+    ...<8 lines>...
+        compression=compression,
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchaudio\_torchcodec.py", line 246, in save_with_torchcodec
+    from torchcodec.encoders import AudioEncoder
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\__init__.py", line 12, in <module>
+    from . import decoders, encoders, samplers, transforms  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\decoders\__init__.py", line 7, in <module>
+    from .._core import AudioStreamMetadata, VideoStreamMetadata
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\__init__.py", line 8, in <module>
+    from ._metadata import (
+    ...<5 lines>...
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\_metadata.py", line 16, in <module>
+    from torchcodec._core.ops import (
+    ...<3 lines>...
+    )
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 109, in <module>
+    ffmpeg_major_version, core_library_path = load_torchcodec_shared_libraries()
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 76, in load_torchcodec_shared_libraries
+    raise RuntimeError(
+    ...<16 lines>...
+    )
+RuntimeError: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback].
+2026-02-13 16:39:04,040 | INFO | novasr_gui | Batch complete: total=1
+2026-02-13 16:42:17,001 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\tmpm_1njqef.wav
+2026-02-13 16:42:17,001 | INFO | novasr_gui | Loaded audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\tmpm_1njqef.wav
+2026-02-13 16:42:25,571 | INFO | novasr_gui | Launching NovaSR GUI app. Log path: C:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.log
+2026-02-13 16:42:25,603 | INFO | novasr_gui | GUI startup
+2026-02-13 16:42:26,035 | INFO | novasr_gui | Startup self-check: begin
+2026-02-13 16:42:26,041 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\novasr_probe_wvn9dhz4.wav
+2026-02-13 16:42:26,042 | INFO | novasr_gui | Loaded audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\novasr_probe_wvn9dhz4.wav
+2026-02-13 16:42:26,042 | INFO | novasr_gui | Startup self-check: PASS (shape=(1, 1600), sr=16000)
+2026-02-13 16:42:51,018 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:42:51,019 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/T7_RS22050_VAE010.wav']
+2026-02-13 16:42:51,021 | INFO | novasr_gui | Process settings: use_half=True, cycles=1, denoise=True, eq=True, between_cycles=False, dual_output=True
+2026-02-13 16:42:51,022 | INFO | novasr_gui | Initializing FastSR (half=True)
+2026-02-13 16:42:51,952 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/YatharthS/NovaSR/revision/main "HTTP/1.1 200 OK"
+2026-02-13 16:42:51,964 | INFO | novasr_gui | FastSR initialized successfully on device: cpu
+2026-02-13 16:42:51,965 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:42:51,996 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+2026-02-13 16:42:51,996 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/T7_RS22050_VAE010.wav, cycles=1, between_cycles=False, denoise=True, eq=True
+2026-02-13 16:42:51,996 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 16:42:51,997 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10352964)
+2026-02-13 16:43:05,281 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268530)
+2026-02-13 16:43:05,285 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 16:43:05,687 | WARNING | novasr_gui | Audio save failed (soundfile): dtype must be one of ['float32', 'float64', 'int16', 'int32'] and not 'float16'
+2026-02-13 16:43:05,698 | WARNING | novasr_gui | Audio save failed (backend=soundfile): Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback].
+2026-02-13 16:43:05,707 | WARNING | novasr_gui | Audio save failed (backend=sox): Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback].
+2026-02-13 16:43:05,716 | WARNING | novasr_gui | Audio save failed (backend=ffmpeg): Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback].
+2026-02-13 16:43:05,724 | WARNING | novasr_gui | Audio save failed (backend=None): Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback].
+2026-02-13 16:43:05,725 | ERROR | novasr_gui | Processing failed for file: C:/Users/dtruj/Music/T7_RS22050_VAE010.wav
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.py", line 533, in _process
+    safe_audio_save(out_path, raw_audio, raw_sr)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.py", line 100, in safe_audio_save
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: Failed to save audio with all backends. soundfile: dtype must be one of ['float32', 'float64', 'int16', 'int32'] and not 'float16' | backend=soundfile: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback]. | backend=sox: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback]. | backend=ffmpeg: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback]. | backend=None: Could not load libtorchcodec. Likely causes:
+          1. FFmpeg is not properly installed in your environment. We support
+             versions 4, 5, 6, 7, and 8, and we attempt to load libtorchcodec
+             for each of those versions. Errors for versions not installed on
+             your system are expected; only the error for your installed FFmpeg
+             version is relevant. On Windows, ensure you've installed the
+             "full-shared" version which ships DLLs.
+          2. The PyTorch version (2.10.0+cpu) is not compatible with
+             this version of TorchCodec. Refer to the version compatibility
+             table:
+             https://github.com/pytorch/torchcodec?tab=readme-ov-file#installing-torchcodec.
+          3. Another runtime dependency; see exceptions below.
+
+        The following exceptions were raised as we tried to load libtorchcodec:
+        
+[start of libtorchcodec loading traceback]
+FFmpeg version 8:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core8.dll
+
+FFmpeg version 7:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core7.dll
+
+FFmpeg version 6:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core6.dll
+
+FFmpeg version 5:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core5.dll
+
+FFmpeg version 4:
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1442, in load_library
+    ctypes.CDLL(path)
+    ~~~~~~~~~~~^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 433, in __init__
+    self._handle = self._load_library(name, mode, handle, winmode)
+                   ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\AppData\Local\Python\pythoncore-3.14-64\Lib\ctypes\__init__.py", line 451, in _load_library
+    return _LoadLibrary(self._name, winmode)
+FileNotFoundError: Could not find module 'C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll' (or one of its dependencies). Try using the full path with constructor syntax.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\_core\ops.py", line 57, in load_torchcodec_shared_libraries
+    torch.ops.load_library(core_library_path)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torch\_ops.py", line 1444, in load_library
+    raise OSError(f"Could not load this library: {path}") from e
+OSError: Could not load this library: C:\Users\dtruj\OneDrive\dev\NovaSR\.venv\Lib\site-packages\torchcodec\libtorchcodec_core4.dll
+[end of libtorchcodec loading traceback].
+2026-02-13 16:43:05,733 | INFO | novasr_gui | Batch complete: total=1 with profile (dual output)
+2026-02-13 16:45:26,349 | WARNING | novasr_gui | Audio save failed (soundfile): ValueError: dtype must be one of ['float32', 'float64', 'int16', 'int32'] and not 'float16'
+2026-02-13 16:45:26,362 | WARNING | novasr_gui | Audio save failed (backend=soundfile): RuntimeError: Could not load libtorchcodec. Likely causes:
+2026-02-13 16:45:26,362 | WARNING | novasr_gui | TorchCodec backend unavailable; stopping torchaudio backend probing.
+2026-02-13 16:45:56,617 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\tmpf1vhofmn.wav
+2026-02-13 16:46:26,540 | INFO | novasr_gui | Launching NovaSR GUI app. Log path: c:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.log
+2026-02-13 16:46:26,575 | INFO | novasr_gui | GUI startup
+2026-02-13 16:46:26,960 | INFO | novasr_gui | Startup self-check: begin
+2026-02-13 16:46:26,967 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\novasr_probe_dd9rgi63.wav
+2026-02-13 16:46:26,968 | INFO | novasr_gui | Loaded audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\novasr_probe_dd9rgi63.wav
+2026-02-13 16:46:26,968 | INFO | novasr_gui | Startup self-check: PASS (shape=(1, 1600), sr=16000)
+2026-02-13 16:46:58,219 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/T1_VAE_030.wav
+2026-02-13 16:46:58,219 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/T1_VAE_030.wav']
+2026-02-13 16:46:58,222 | INFO | novasr_gui | Process settings: use_half=True, cycles=2, denoise=True, eq=True, between_cycles=True, dual_output=True
+2026-02-13 16:46:58,222 | INFO | novasr_gui | Initializing FastSR (half=True)
+2026-02-13 16:46:58,790 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/YatharthS/NovaSR/revision/main "HTTP/1.1 200 OK"
+2026-02-13 16:46:58,806 | INFO | novasr_gui | FastSR initialized successfully on device: cpu
+2026-02-13 16:46:58,806 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/T1_VAE_030.wav
+2026-02-13 16:46:58,871 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/T1_VAE_030.wav
+2026-02-13 16:46:58,872 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/T1_VAE_030.wav, cycles=2, between_cycles=True, denoise=True, eq=True
+2026-02-13 16:46:58,872 | INFO | novasr_gui | Cycle 1/2
+2026-02-13 16:46:58,872 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10352964)
+2026-02-13 16:47:11,665 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268530)
+2026-02-13 16:47:11,667 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 16:47:12,026 | INFO | novasr_gui | Cycle 2/2
+2026-02-13 16:47:12,026 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11268530)
+2026-02-13 16:47:24,293 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268527)
+2026-02-13 16:47:24,296 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 16:47:24,730 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\T1_VAE_030_48kHz.wav
+2026-02-13 16:47:24,780 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\T1_VAE_030_48kHz_profile.wav
+2026-02-13 16:47:24,780 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/T1_VAE_030.wav, prefix=input
+2026-02-13 16:47:24,780 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\T1_VAE_030_48kHz_profile.wav, prefix=output
+2026-02-13 16:47:24,780 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\T1_VAE_030_48kHz.wav, profile_out=C:\Users\dtruj\Music\T1_VAE_030_48kHz_profile.wav, raw_sr=48000
+2026-02-13 16:47:24,781 | INFO | novasr_gui | Batch complete: total=1 with profile (dual output)
+2026-02-13 16:47:29,213 | INFO | novasr_gui | Opened output file: C:\Users\dtruj\Music\T1_VAE_030_48kHz_profile.wav
+2026-02-13 16:50:52,003 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/IDO_T1_VAE_015.wav
+2026-02-13 16:50:52,003 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/IDO_T1_VAE_015.wav']
+2026-02-13 16:50:52,005 | INFO | novasr_gui | Process settings: use_half=True, cycles=3, denoise=False, eq=False, between_cycles=True, dual_output=True
+2026-02-13 16:50:52,005 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/IDO_T1_VAE_015.wav
+2026-02-13 16:50:52,059 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/IDO_T1_VAE_015.wav
+2026-02-13 16:50:52,059 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/IDO_T1_VAE_015.wav, cycles=3, between_cycles=True, denoise=False, eq=False
+2026-02-13 16:50:52,059 | INFO | novasr_gui | Cycle 1/3
+2026-02-13 16:50:52,059 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10352964)
+2026-02-13 16:51:03,830 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268530)
+2026-02-13 16:51:03,833 | INFO | novasr_gui | Cycle 2/3
+2026-02-13 16:51:03,833 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11268530)
+2026-02-13 16:51:15,706 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268527)
+2026-02-13 16:51:15,707 | INFO | novasr_gui | Cycle 3/3
+2026-02-13 16:51:15,707 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11268527)
+2026-02-13 16:51:27,837 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268524)
+2026-02-13 16:51:28,007 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\IDO_T1_VAE_015_48kHz.wav
+2026-02-13 16:51:28,008 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/IDO_T1_VAE_015.wav, prefix=input
+2026-02-13 16:51:28,008 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\IDO_T1_VAE_015_48kHz.wav, prefix=output
+2026-02-13 16:51:28,008 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\IDO_T1_VAE_015_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 16:51:28,008 | INFO | novasr_gui | Batch complete: total=1
+2026-02-13 16:55:45,067 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/T1_VAE_030_48kHz_profile.wav
+2026-02-13 16:55:45,067 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/T1_VAE_030_48kHz_profile.wav']
+2026-02-13 16:55:45,068 | INFO | novasr_gui | Process settings: use_half=True, cycles=1, denoise=False, eq=False, between_cycles=False, dual_output=True
+2026-02-13 16:55:45,069 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/T1_VAE_030_48kHz_profile.wav
+2026-02-13 16:55:45,091 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/T1_VAE_030_48kHz_profile.wav
+2026-02-13 16:55:45,091 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/T1_VAE_030_48kHz_profile.wav, cycles=1, between_cycles=False, denoise=False, eq=False
+2026-02-13 16:55:45,091 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 16:55:45,091 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11268527)
+2026-02-13 16:55:57,470 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11268524)
+2026-02-13 16:55:57,564 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\T1_VAE_030_48kHz_profile_48kHz.wav
+2026-02-13 16:55:57,564 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/T1_VAE_030_48kHz_profile.wav, prefix=input
+2026-02-13 16:55:57,564 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\T1_VAE_030_48kHz_profile_48kHz.wav, prefix=output
+2026-02-13 16:55:57,564 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\T1_VAE_030_48kHz_profile_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 16:55:57,565 | INFO | novasr_gui | Batch complete: total=1
+2026-02-13 17:08:25,171 | INFO | novasr_gui | Launching NovaSR GUI app. Log path: c:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.log
+2026-02-13 17:08:25,204 | INFO | novasr_gui | GUI startup
+2026-02-13 17:08:25,569 | INFO | novasr_gui | Startup self-check: begin
+2026-02-13 17:08:25,585 | INFO | novasr_gui | Torch runtime: version=2.10.0+cu128, torch_cuda=12.8, cuda_available=True, cuda_devices=1
+2026-02-13 17:08:25,587 | INFO | novasr_gui | Detected GPU: NVIDIA GeForce RTX 5080
+2026-02-13 17:08:25,589 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\novasr_probe__2ckoruc.wav
+2026-02-13 17:08:25,590 | INFO | novasr_gui | Loaded audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\novasr_probe__2ckoruc.wav
+2026-02-13 17:08:25,590 | INFO | novasr_gui | Startup self-check: PASS (shape=(1, 1600), sr=16000)
+2026-02-13 17:09:21,314 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav
+2026-02-13 17:09:21,315 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav']
+2026-02-13 17:09:21,318 | INFO | novasr_gui | Process settings: use_half=True, cycles=1, denoise=True, eq=True, between_cycles=False, dual_output=True, require_gpu=True
+2026-02-13 17:09:21,318 | INFO | novasr_gui | Initializing FastSR (half=True, require_gpu=True)
+2026-02-13 17:09:21,841 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/YatharthS/NovaSR/revision/main "HTTP/1.1 200 OK"
+2026-02-13 17:09:21,966 | INFO | novasr_gui | FastSR initialized successfully on device: cuda
+2026-02-13 17:09:21,967 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav
+2026-02-13 17:09:22,001 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav
+2026-02-13 17:09:22,001 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav, cycles=1, between_cycles=False, denoise=True, eq=True
+2026-02-13 17:09:22,001 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 17:09:22,002 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10672200)
+2026-02-13 17:09:22,368 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11615996)
+2026-02-13 17:09:22,373 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 17:09:22,858 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz.wav
+2026-02-13 17:09:22,903 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz_profile.wav
+2026-02-13 17:09:22,903 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav, prefix=input
+2026-02-13 17:09:22,904 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz_profile.wav, prefix=output
+2026-02-13 17:09:22,904 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz.wav, profile_out=C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz_profile.wav, raw_sr=48000
+2026-02-13 17:09:22,904 | INFO | novasr_gui | Batch complete: total=1 with profile (dual output)
+2026-02-13 17:10:20,571 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav
+2026-02-13 17:10:20,571 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav']
+2026-02-13 17:10:20,574 | INFO | novasr_gui | Process settings: use_half=True, cycles=1, denoise=True, eq=True, between_cycles=False, dual_output=True, require_gpu=True
+2026-02-13 17:10:20,574 | INFO | novasr_gui | Processing file 1/1: C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav
+2026-02-13 17:10:20,613 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav
+2026-02-13 17:10:20,614 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav, cycles=1, between_cycles=False, denoise=True, eq=True
+2026-02-13 17:10:20,614 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 17:10:20,614 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10672200)
+2026-02-13 17:10:20,916 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11615996)
+2026-02-13 17:10:20,920 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 17:10:21,344 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz.wav
+2026-02-13 17:10:21,385 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz_profile.wav
+2026-02-13 17:10:21,385 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/01_Match99.9pct_Resample_UNCERTAIN44pct.wav, prefix=input
+2026-02-13 17:10:21,385 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz_profile.wav, prefix=output
+2026-02-13 17:10:21,385 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz.wav, profile_out=C:\Users\dtruj\Music\01_Match99.9pct_Resample_UNCERTAIN44pct_48kHz_profile.wav, raw_sr=48000
+2026-02-13 17:10:21,386 | INFO | novasr_gui | Batch complete: total=1 with profile (dual output)
+2026-02-13 20:17:48,927 | INFO | novasr_gui | Launching NovaSR GUI app. Log path: c:\Users\dtruj\OneDrive\dev\NovaSR\NovaSR\novasr_gui.log
+2026-02-13 20:17:48,964 | INFO | novasr_gui | GUI startup
+2026-02-13 20:17:49,349 | INFO | novasr_gui | Startup self-check: begin
+2026-02-13 20:17:49,366 | INFO | novasr_gui | Torch runtime: version=2.10.0+cu128, torch_cuda=12.8, cuda_available=True, cuda_devices=1
+2026-02-13 20:17:49,367 | INFO | novasr_gui | Detected GPU: NVIDIA GeForce RTX 5080
+2026-02-13 20:17:49,370 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\novasr_probe_2s0rumqb.wav
+2026-02-13 20:17:49,371 | INFO | novasr_gui | Loaded audio with soundfile: C:\Users\dtruj\AppData\Local\Temp\novasr_probe_2s0rumqb.wav
+2026-02-13 20:17:49,371 | INFO | novasr_gui | Startup self-check: PASS (shape=(1, 1600), sr=16000)
+2026-02-13 20:18:45,654 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav; C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav; C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav; C:/Users/dtruj/Music/I_dosA_005.wav
+2026-02-13 20:18:45,655 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav', 'C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav', 'C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav', 'C:/Users/dtruj/Music/I_dosA_005.wav']
+2026-02-13 20:18:45,658 | INFO | novasr_gui | Process settings: use_half=True, cycles=3, denoise=True, eq=True, between_cycles=True, dual_output=False, require_gpu=True
+2026-02-13 20:18:45,658 | INFO | novasr_gui | Initializing FastSR (half=True, require_gpu=True)
+2026-02-13 20:18:46,222 | INFO | httpx | HTTP Request: GET https://huggingface.co/api/models/YatharthS/NovaSR/revision/main "HTTP/1.1 200 OK"
+2026-02-13 20:18:46,352 | INFO | novasr_gui | FastSR initialized successfully on device: cuda
+2026-02-13 20:18:46,352 | INFO | novasr_gui | Processing file 1/4: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav
+2026-02-13 20:18:46,370 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav
+2026-02-13 20:18:46,371 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav, cycles=3, between_cycles=True, denoise=True, eq=True
+2026-02-13 20:18:46,371 | INFO | novasr_gui | Cycle 1/3
+2026-02-13 20:18:46,371 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10319400)
+2026-02-13 20:18:46,714 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231996)
+2026-02-13 20:18:46,717 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:47,364 | INFO | novasr_gui | Cycle 2/3
+2026-02-13 20:18:47,364 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11231996)
+2026-02-13 20:18:47,634 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231993)
+2026-02-13 20:18:47,636 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:48,064 | INFO | novasr_gui | Cycle 3/3
+2026-02-13 20:18:48,065 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11231993)
+2026-02-13 20:18:48,193 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231990)
+2026-02-13 20:18:48,196 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:48,590 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74_48kHz.wav
+2026-02-13 20:18:48,590 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav, prefix=input
+2026-02-13 20:18:48,590 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74_48kHz.wav, prefix=output
+2026-02-13 20:18:48,590 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 20:18:48,590 | INFO | novasr_gui | Processing file 2/4: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav
+2026-02-13 20:18:48,609 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav
+2026-02-13 20:18:48,609 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav, cycles=3, between_cycles=True, denoise=True, eq=True
+2026-02-13 20:18:48,609 | INFO | novasr_gui | Cycle 1/3
+2026-02-13 20:18:48,609 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10319400)
+2026-02-13 20:18:48,714 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231996)
+2026-02-13 20:18:48,715 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:49,088 | INFO | novasr_gui | Cycle 2/3
+2026-02-13 20:18:49,088 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11231996)
+2026-02-13 20:18:49,215 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231993)
+2026-02-13 20:18:49,217 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:49,580 | INFO | novasr_gui | Cycle 3/3
+2026-02-13 20:18:49,580 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11231993)
+2026-02-13 20:18:49,706 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231990)
+2026-02-13 20:18:49,709 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:50,106 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74_48kHz.wav
+2026-02-13 20:18:50,106 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav, prefix=input
+2026-02-13 20:18:50,106 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74_48kHz.wav, prefix=output
+2026-02-13 20:18:50,106 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 20:18:50,107 | INFO | novasr_gui | Processing file 3/4: C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav
+2026-02-13 20:18:50,125 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav
+2026-02-13 20:18:50,125 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav, cycles=3, between_cycles=True, denoise=True, eq=True
+2026-02-13 20:18:50,125 | INFO | novasr_gui | Cycle 1/3
+2026-02-13 20:18:50,125 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10319400)
+2026-02-13 20:18:50,231 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231996)
+2026-02-13 20:18:50,233 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:50,587 | INFO | novasr_gui | Cycle 2/3
+2026-02-13 20:18:50,587 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11231996)
+2026-02-13 20:18:50,715 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231993)
+2026-02-13 20:18:50,717 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:51,075 | INFO | novasr_gui | Cycle 3/3
+2026-02-13 20:18:51,076 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11231993)
+2026-02-13 20:18:51,203 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231990)
+2026-02-13 20:18:51,206 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:51,611 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65_48kHz.wav
+2026-02-13 20:18:51,611 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav, prefix=input
+2026-02-13 20:18:51,611 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65_48kHz.wav, prefix=output
+2026-02-13 20:18:51,611 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 20:18:51,611 | INFO | novasr_gui | Processing file 4/4: C:/Users/dtruj/Music/I_dosA_005.wav
+2026-02-13 20:18:51,649 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/I_dosA_005.wav
+2026-02-13 20:18:51,649 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/I_dosA_005.wav, cycles=3, between_cycles=True, denoise=True, eq=True
+2026-02-13 20:18:51,649 | INFO | novasr_gui | Cycle 1/3
+2026-02-13 20:18:51,649 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10298874)
+2026-02-13 20:18:51,757 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11209655)
+2026-02-13 20:18:51,759 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:52,114 | INFO | novasr_gui | Cycle 2/3
+2026-02-13 20:18:52,115 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11209655)
+2026-02-13 20:18:52,245 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11209652)
+2026-02-13 20:18:52,247 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:52,604 | INFO | novasr_gui | Cycle 3/3
+2026-02-13 20:18:52,604 | INFO | novasr_gui | Running SR pass: input_sr=48000, input_shape=(1, 11209652)
+2026-02-13 20:18:52,731 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11209649)
+2026-02-13 20:18:52,738 | INFO | novasr_gui | Applying profile: denoise=True, eq=True, sr=48000
+2026-02-13 20:18:53,153 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\I_dosA_005_48kHz.wav
+2026-02-13 20:18:53,154 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/I_dosA_005.wav, prefix=input
+2026-02-13 20:18:53,154 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\I_dosA_005_48kHz.wav, prefix=output
+2026-02-13 20:18:53,154 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\I_dosA_005_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 20:18:53,154 | INFO | novasr_gui | Batch complete: total=4 with profile
+2026-02-13 20:22:43,678 | INFO | novasr_gui | Start requested. Raw input field: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav; C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav; C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav; C:/Users/dtruj/Music/I_dosA_005.wav
+2026-02-13 20:22:43,678 | INFO | novasr_gui | Resolved files to process: ['C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav', 'C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav', 'C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav', 'C:/Users/dtruj/Music/I_dosA_005.wav']
+2026-02-13 20:22:43,680 | INFO | novasr_gui | Process settings: use_half=False, cycles=1, denoise=False, eq=False, between_cycles=False, dual_output=False, require_gpu=False
+2026-02-13 20:22:43,680 | INFO | novasr_gui | Processing file 1/4: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav
+2026-02-13 20:22:43,714 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav
+2026-02-13 20:22:43,715 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav, cycles=1, between_cycles=False, denoise=False, eq=False
+2026-02-13 20:22:43,715 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 20:22:43,715 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10319400)
+2026-02-13 20:22:43,987 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231996)
+2026-02-13 20:22:44,033 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74_48kHz.wav
+2026-02-13 20:22:44,033 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74.wav, prefix=input
+2026-02-13 20:22:44,033 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74_48kHz.wav, prefix=output
+2026-02-13 20:22:44,033 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.05_UNCERTAIN_34pct_Q74_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 20:22:44,034 | INFO | novasr_gui | Processing file 2/4: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav
+2026-02-13 20:22:44,051 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav
+2026-02-13 20:22:44,051 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav, cycles=1, between_cycles=False, denoise=False, eq=False
+2026-02-13 20:22:44,051 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 20:22:44,052 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10319400)
+2026-02-13 20:22:44,156 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231996)
+2026-02-13 20:22:44,232 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74_48kHz.wav
+2026-02-13 20:22:44,232 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74.wav, prefix=input
+2026-02-13 20:22:44,232 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74_48kHz.wav, prefix=output
+2026-02-13 20:22:44,232 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\i_dos_025_Resamp22k_VAE0.10_UNCERTAIN_31pct_Q74_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 20:22:44,232 | INFO | novasr_gui | Processing file 3/4: C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav
+2026-02-13 20:22:44,251 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav
+2026-02-13 20:22:44,251 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav, cycles=1, between_cycles=False, denoise=False, eq=False
+2026-02-13 20:22:44,251 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 20:22:44,252 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10319400)
+2026-02-13 20:22:44,356 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11231996)
+2026-02-13 20:22:44,402 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65_48kHz.wav
+2026-02-13 20:22:44,402 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65.wav, prefix=input
+2026-02-13 20:22:44,403 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65_48kHz.wav, prefix=output
+2026-02-13 20:22:44,403 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\i_dos_025_VAE0.20_only_UNCERTAIN_41pct_Q65_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 20:22:44,403 | INFO | novasr_gui | Processing file 4/4: C:/Users/dtruj/Music/I_dosA_005.wav
+2026-02-13 20:22:44,440 | INFO | novasr_gui | Loaded audio with soundfile: C:/Users/dtruj/Music/I_dosA_005.wav
+2026-02-13 20:22:44,441 | INFO | novasr_gui | Starting compounded SR: file=C:/Users/dtruj/Music/I_dosA_005.wav, cycles=1, between_cycles=False, denoise=False, eq=False
+2026-02-13 20:22:44,441 | INFO | novasr_gui | Cycle 1/1
+2026-02-13 20:22:44,441 | INFO | novasr_gui | Running SR pass: input_sr=44100, input_shape=(1, 10298874)
+2026-02-13 20:22:44,549 | INFO | novasr_gui | SR pass complete: output_shape=(1, 11209655)
+2026-02-13 20:22:44,613 | INFO | novasr_gui | Saved audio with soundfile: C:\Users\dtruj\Music\I_dosA_005_48kHz.wav
+2026-02-13 20:22:44,614 | INFO | novasr_gui | Preparing preview WAV: source=C:/Users/dtruj/Music/I_dosA_005.wav, prefix=input
+2026-02-13 20:22:44,614 | INFO | novasr_gui | Preparing preview WAV: source=C:\Users\dtruj\Music\I_dosA_005_48kHz.wav, prefix=output
+2026-02-13 20:22:44,614 | INFO | novasr_gui | File complete. raw_out=C:\Users\dtruj\Music\I_dosA_005_48kHz.wav, profile_out=n/a, raw_sr=48000
+2026-02-13 20:22:44,614 | INFO | novasr_gui | Batch complete: total=4
