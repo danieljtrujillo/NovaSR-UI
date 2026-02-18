@@ -61,7 +61,10 @@ class FastSR:
             model_path = snapshot_download("YatharthS/NovaSR")
             ckpt_path = f"{model_path}/pytorch_model_v1.bin"
 
+        # Load model in float32 precision first
         self.model = self._load_model(ckpt_path).eval().float()
+        
+        # Optionally convert to half-precision if on GPU
         self.half = False
         if half and self.device.type == 'cuda':
             self.half = True
