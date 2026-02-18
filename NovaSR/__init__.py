@@ -3,7 +3,6 @@ import os
 import torchaudio
 import soundfile as sf
 from .speechsr import SynthesizerTrn
-from torch.nn.utils import weight_norm
 
 
 def _safe_load_audio(audio_file):
@@ -62,9 +61,9 @@ class FastSR:
             model_path = snapshot_download("YatharthS/NovaSR")
             ckpt_path = f"{model_path}/pytorch_model_v1.bin"
 
-        self.half = False
         self.model = self._load_model(ckpt_path).eval().float()
-        if half == True and self.device.type == 'cuda':
+        self.half = False
+        if half and self.device.type == 'cuda':
             self.half = True
             self.model.half()
 
@@ -75,7 +74,11 @@ class FastSR:
             self.hps['train']['segment_size'] // self.hps['data']['hop_length'],
             **self.hps['model']
         ).to(self.device)
-        assert os.path.isfile(ckpt_path)
+        if not os.path.isfile(ckpt_path):
+            raise FileNotFoundError(
+                f"Model checkpoint not found at: {ckpt_path}. "
+                "Please check that the model was downloaded correctly."
+            )
         checkpoint_dict = torch.load(ckpt_path, map_location='cpu')
         model.dec.remove_weight_norm()
         model.load_state_dict(checkpoint_dict, strict=True)
