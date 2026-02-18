@@ -10,6 +10,13 @@ Run as Administrator:
 import argparse
 import os
 import sys
+
+# Check if running on Windows
+if os.name != 'nt':
+    print("ERROR: This script only works on Windows.")
+    print("Context menu integration is a Windows-only feature.")
+    sys.exit(1)
+
 import winreg
 
 # Audio extensions to register

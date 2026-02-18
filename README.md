@@ -223,6 +223,14 @@ A: You're typing Python code into a shell. Run `python` first to enter the Pytho
 
 ---
 
+## Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, coding guidelines, and how to submit pull requests.
+
+For bug reports or feature requests, please [open an issue](https://github.com/ysharma3501/NovaSR/issues).
+
+---
+
 ## Final Notes
 
 Repo stars and model likes are appreciated if you find this helpful. Thank you!

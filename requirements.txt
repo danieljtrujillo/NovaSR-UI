@@ -1,0 +1,22 @@
+# NovaSR Core Dependencies
+# Install with: pip install -r requirements.txt
+
+# Audio processing
+torch>=2.0.0
+torchaudio>=2.0.0
+soundfile>=0.12.0
+soxr>=0.3.0
+
+# Model architecture
+timm>=0.9.0
+einops>=0.6.0
+
+# Model weights download
+huggingface_hub>=0.16.0
+
+# Development dependencies (optional)
+# Uncomment for development setup:
+# pytest>=7.0.0
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.0.0

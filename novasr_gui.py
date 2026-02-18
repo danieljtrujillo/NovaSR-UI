@@ -3,6 +3,7 @@
 NovaSR - Minimalist Audio Super-Resolution GUI
 Drag & drop or browse audio files → upscale 16kHz → 48kHz in one click.
 """
+from __future__ import annotations
 
 import os
 import sys
